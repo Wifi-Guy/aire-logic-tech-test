@@ -1,4 +1,4 @@
-from src.apis.music_brains import get_artist_mbid
+from src.apis.music_brains import get_artist_mbid, get_recordings
 from unittest.mock import MagicMock
 import pytest
 from src.utilities.exceptions import *
@@ -20,3 +20,7 @@ def test_get_artist_mbid_fails_no_artists_found():
     with pytest.raises(NotFoundError):
         get_artist_mbid('test', http_caller=mocked_http_caller)
 
+
+def test_get_recordings():
+    mocked_http_caller = MagicMock(return_value={'recordings': [{'title': 'bob tests'}, {'title': 'bobbette tests'}]})
+    assert get_recordings('test', http_caller=mocked_http_caller) == ['bob tests', 'bobbette tests']

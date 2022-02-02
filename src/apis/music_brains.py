@@ -17,4 +17,8 @@ def get_artist_mbid(artist_name: str, http_caller: wrapped_http_caller = wrapped
 
 
 def get_recordings(artist_mbid: str, http_caller: wrapped_http_caller = wrapped_http_caller):
-    raise NotImplementedError
+    recordings = http_caller(
+        url=f'https://musicbrainz.org/ws/2/artist/{artist_mbid}?inc=recordings&fmt=json',
+        method='GET'
+    )['recordings']
+    return [track['title'] for track in recordings]
