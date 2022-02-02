@@ -1,0 +1,4 @@
+-rrequirements.txt
+pytest==6.2.5
+coverage
+pytest-cov
