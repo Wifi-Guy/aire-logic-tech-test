@@ -12,7 +12,7 @@ def wrapped_http_caller(
         backoffs: int = 5
 ):
     headers = headers or {}
-    request = _backoff_http_caller(*locals())
+    request = _backoff_http_caller(**locals())
     return request.json()
 
 

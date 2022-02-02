@@ -9,10 +9,9 @@ def test_get_artist_mbid_passes():
     assert get_artist_mbid('test', http_caller=mocked_http_caller) == 'bob'
 
 
-def test_get_artist_mbid_fails_too_many_artists():
+def test_get_artist_mbid_passes_picks_first_artist():
     mocked_http_caller = MagicMock(return_value={'artists': [{'id': 'bob'}, {'id': 'bobbette'}]})
-    with pytest.raises(NotSpecificEnoughError):
-        get_artist_mbid('test', http_caller=mocked_http_caller)
+    assert get_artist_mbid('test', http_caller=mocked_http_caller) == 'bob'
 
 
 def test_get_artist_mbid_fails_no_artists_found():
