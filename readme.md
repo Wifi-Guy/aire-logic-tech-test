@@ -7,6 +7,7 @@ Future Requirements:
 
 Run: 
 ```
+cd src/
 main.py Beatles
 ```
 
